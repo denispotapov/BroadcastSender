@@ -1,6 +1,5 @@
 package com.example.broadcastsender
 
-import android.content.ComponentName
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -18,29 +17,15 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnSendBroadcast.setOnClickListener {
             val intent = Intent("com.example.broadcastreceiverexample.ACTION_EXAMPLE")
-            //intent.setClass(this, ExampleBroadcastReceiver2::class.java)
+            intent.setPackage("com.example.broadcastreceiverexample")
 
-            /*val componentName = ComponentName(
-                "com.example.broadcastreceiverexample",
-                "com.example.broadcastreceiverexample.ExampleBroadcastReceiver")
-            intent.component = componentName*/
+            val extras = Bundle()
+            extras.putString("stringExtra", "Start")
 
-            /*intent.setClassName("com.example.broadcastreceiverexample",
-                "com.example.broadcastreceiverexample.ExampleBroadcastReceiver")*/
-
-            //intent.setPackage("com.example.broadcastreceiverexample")
-
-            val packageManager = packageManager
-            val infos = packageManager.queryBroadcastReceivers(intent, 0)
-
-            for (info in infos) {
-                val componentName =
-                    ComponentName(info.activityInfo.packageName, info.activityInfo.name)
-                intent.component = componentName
-                sendBroadcast(intent)
-            }
-
-            //sendBroadcast(intent)
+            sendOrderedBroadcast(
+                intent, null, SenderReceiver(), null, 0,
+                "Start", extras
+            )
         }
     }
 }
