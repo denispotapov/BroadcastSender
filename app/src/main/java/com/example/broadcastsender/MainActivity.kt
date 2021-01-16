@@ -1,5 +1,6 @@
 package com.example.broadcastsender
 
+import android.Manifest
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -23,7 +24,7 @@ class MainActivity : AppCompatActivity() {
             extras.putString("stringExtra", "Start")
 
             sendOrderedBroadcast(
-                intent, null, SenderReceiver(), null, 0,
+                intent, Manifest.permission.WAKE_LOCK, SenderReceiver(), null, 0,
                 "Start", extras
             )
         }
