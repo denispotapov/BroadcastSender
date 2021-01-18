@@ -8,7 +8,10 @@ import android.widget.Toast
 class SenderReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context?, intent: Intent?) {
-        var resultCode = resultCode
+
+        Toast.makeText(context, "SenderReceiver triggered", Toast.LENGTH_SHORT).show()
+
+        /*var resultCode = resultCode
         var resultData = resultData
         val resultExtras = getResultExtras(true)
         var stringExtra = resultExtras.getString("stringExtra")
@@ -24,6 +27,6 @@ class SenderReceiver : BroadcastReceiver() {
         resultData = "SenderReceiver"
         resultExtras.putString("stringExtra", stringExtra)
 
-        setResult(resultCode, resultData, resultExtras)
+        setResult(resultCode, resultData, resultExtras)*/
     }
 }
